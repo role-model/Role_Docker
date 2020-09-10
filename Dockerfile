@@ -13,4 +13,3 @@ RUN conda install -c mess -c conda-forge mess -y
 RUN export R_HOME=""
 RUN mkdir /home/shared
 ENTRYPOINT ["MESS", "-n","test"]
-CMD [“bash”] 
