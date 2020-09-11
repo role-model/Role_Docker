@@ -6,6 +6,7 @@ RUN apt-get -y install wget nano curl software-properties-common sudo git-core u
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 RUN bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/anaconda 
 ENV PATH="/usr/local/anaconda/bin:$PATH"
+RUN bash
 RUN conda init bash
 RUN source ~/.bashrc
 RUN conda create -n mess python=3.7 -y
