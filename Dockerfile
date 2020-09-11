@@ -8,8 +8,8 @@ RUN bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/anaconda
 ENV PATH="/usr/local/anaconda/bin:$PATH"
 SHELL ["/bin/bash", "-c"] 
 RUN conda init bash
-RUN source ~/.bashrc
 RUN conda create -n mess python=3.7 -y
+RUN source ~/.bashrc
 RUN conda activate mess
 RUN conda install -c mess -c conda-forge mess -y
 RUN export R_HOME=""
