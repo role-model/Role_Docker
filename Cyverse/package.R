@@ -1,0 +1,12 @@
+install.packages("shiny")
+install.packages("shinyBS")
+install.packages("devtools")
+install.packages("plotly")
+install.packages("ggplot2")
+install.packages("shinyjs")
+install.packages("plyr")
+install.packages("future")
+install.packages("gsl")
+devtools::install_github("role-model/roleR", ref="main")
+devtools::install_github("ajrominger/pika", keep_source = TRUE, force=TRUE)
+
