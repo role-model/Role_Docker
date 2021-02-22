@@ -1,4 +1,4 @@
-FROM cyversevice/rstudio-verse:3.6.0 
+FROM cyversevice/rstudio-verse:4.0.0-ubuntu18.04
 MAINTAINER renatof@ufl.edu 
 RUN apt-get -y update 
 RUN apt-get -y install wget nano curl software-properties-common sudo git-core unzip gcc libgsl-dev
