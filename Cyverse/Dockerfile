@@ -1,7 +1,6 @@
 FROM cyversevice/rstudio-verse:4.0.0-ubuntu18.04
 MAINTAINER renatof@ufl.edu 
-RUN mv /etc/apt/sources.list.d/renci-irods.list . && apt-get update -y && apt-get install ca-certificates && mv renci-irods.list /etc/apt/sources.lis
-t.d/ && apt-get update -y
+RUN mv /etc/apt/sources.list.d/renci-irods.list . && apt-get update -y && apt-get install ca-certificates && mv renci-irods.list /etc/apt/sources.list.d/ && apt-get update -y
 RUN apt-get -y update 
 RUN apt-get -y install wget nano curl software-properties-common sudo git-core unzip gcc libgsl-dev
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
