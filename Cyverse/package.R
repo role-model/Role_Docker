@@ -7,6 +7,7 @@ install.packages("shinyjs")
 install.packages("plyr")
 install.packages("future")
 install.packages("gsl")
+install.packages("reticulate")
+install.packages("ggtree")
 devtools::install_github("role-model/roleR", ref="main")
 devtools::install_github("ajrominger/pika", keep_source = TRUE, force=TRUE)
-
