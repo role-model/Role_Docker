@@ -1,6 +1,7 @@
-FROM cyversevice/rstudio-verse:4.0.0-ubuntu18.04
+FROM cyversevice/rstudio-verse:4.2.0
 MAINTAINER renatof@ufl.edu 
-RUN mv /etc/apt/sources.list.d/renci-irods.list . && apt-get update -y && apt-get install ca-certificates && mv renci-irods.list /etc/apt/sources.list.d/ && apt-get update -y
+RUN type -p curl >/dev/null || sudo apt install curl -y
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null && sudo apt update && sudo apt install gh -y
 RUN apt-get -y update 
 RUN apt-get -y install wget nano curl software-properties-common sudo git-core unzip gcc libgsl-dev
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
