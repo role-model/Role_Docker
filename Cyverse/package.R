@@ -8,5 +8,5 @@ install.packages("gsl")
 install.packages("remotes")
 remotes::install_github("role-model/roleR", ref="main")
 remotes::install_github("ajrominger/pika", keep_source=TRUE, force=TRUE)
-remotes::install_github("role-model/roleShiny", ref="main", force=TRUE)
+remotes::install_github("role-model/roleShiny@v0.1.0")
 
