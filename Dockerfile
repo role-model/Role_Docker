@@ -1,12 +1,17 @@
-#This is a sample Image 
-FROM rocker/rstudio 
-MAINTAINER harsh0280@gmail.com 
-RUN apt-get -y update 
-RUN apt-get -y install wget nano curl software-properties-common sudo git-core unzip gcc
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-RUN bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/anaconda 
-ENV PATH="/usr/local/anaconda/bin:$PATH"
-RUN conda install python=3.7
-RUN conda install -c mess -c conda-forge mess
-ENV R_HOME=""
-ENTRYPOINT ["MESS","-s","50","-p"]
+FROM rocker/rstudio:latest-daily
+MAINTAINER renatof@ufl.edu
+RUN apt-get -y update
+RUN apt-get -y install wget nano curl software-properties-common sudo git-core unzip gcc libgsl-dev libpng-dev libxml2-dev
+USER rstudio
+RUN cd /home/rstudio; wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh; bash Miniconda3-latest-Linux-x86_64.sh -b ; ./miniconda3/bin/conda init
+ENV PATH="/home/rstudio/miniconda3/bin:$PATH"
+RUN /home/rstudio/miniconda3/bin/conda install -c bioconda python-newick -y
+RUN /home/rstudio/miniconda3/bin/conda install -c conda-forge pandas -y
+RUN cd /home/rstudio; rm -rf msprime
+RUN cd /home/rstudio; git clone --recurse-submodules https://github.com/tskit-dev/msprime.git
+RUN cd /home/rstudio; cd msprime; pip install .
+COPY install_packages.R /home/rstudio/install_packages.R
+RUN cd /home/rstudio; Rscript /home/rstudio/install_packages.R
+COPY .Rprofile /home/rstudio/.Rprofile
+USER root
+RUN chown rstudio:rstudio /home/rstudio/.Rprofile
